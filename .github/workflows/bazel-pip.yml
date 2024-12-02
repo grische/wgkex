@@ -4,10 +4,10 @@ name: Bazel & PIP
 on:
   push:
     paths:
-      - 'requirements_*'
+      - 'requirements*txt'
   pull_request:
     paths:
-      - 'requirements_*'
+      - 'requirements*txt'
 
 jobs:
   bazel-pip:
