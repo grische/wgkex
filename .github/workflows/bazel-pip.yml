@@ -1,0 +1,23 @@
+---
+name: Bazel & PIP
+
+on:
+  push:
+    paths:
+      - 'requirements_*'
+  pull_request:
+    paths:
+      - 'requirements_*'
+
+jobs:
+  bazel-pip:
+    name: Check if pip dependencies are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update requirements_lock.txt
+        run: |
+          bazel run //:requirements.update
+      - name: Check for difference
+        run: |
+          git diff --exit-code
